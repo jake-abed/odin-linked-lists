@@ -55,6 +55,31 @@ class LinkedList {
         return this.head = valueNode;
     }
 
+    at(index) {
+        let current = this.head;
+        let nextNode = current.nextNode;
+        for (let i = 0; i < index; i++) {
+            current = nextNode;
+            nextNode = current.nextNode;
+        }
+        return current;
+    }
+
+    contains(value) {
+        let current = this.head;
+        let nextNode = current.nextNode;
+        let found = false;
+        while (nextNode) {
+            console.log(toString(value));
+            if (toString(current.value) == toString(value)) {
+                found = true;
+                break;
+            }
+            current = nextNode;
+            nextNode = current.nextNode;
+        }
+        return found;
+    }
 }
 
 //Node class or factory with value property,
@@ -72,7 +97,6 @@ const ll1 = new LinkedList('monkey');
 console.log(ll1);
 
 ll1.prepend('cat');
-
 ll1.append('dog');
 ll1.append('chicken');
 ll1.prepend('human');
