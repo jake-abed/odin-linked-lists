@@ -34,9 +34,9 @@ class LinkedList {
 		let next = current.nextNode;
 
 		while (next.nextNode) {
-			current = next;
 			next = current.nextNode;
 		}
+		current = next;
 		return (current.nextNode = null);
 	}
 
@@ -103,6 +103,20 @@ class LinkedList {
 		}
 		if (!found) return null;
 		return i;
+	}
+
+	toString() {
+		let llString = '';
+		let current = this.head;
+		let next = current.nextNode;
+		for (let i = 0; i < this.size; i++) {
+			llString += '( ' + JSON.stringify(current.value) + ' )';
+			if (next === null) break;
+			llString += ' -> ';
+			current = next;
+			next = current.nextNode;
+		}
+		return llString;
 	}
 }
 
