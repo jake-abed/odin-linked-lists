@@ -118,6 +118,25 @@ class LinkedList {
 		}
 		return llString;
 	}
+
+	insertAt(value, index) {
+		if (index < 0 || index >= this.size)
+			throw new Error(`${index} is out of range.`);
+		let atIndex = this.at(index);
+		let afterIndex = atIndex.nextNode;
+		return (atIndex.nextNode = new Node(value, afterIndex));
+	}
+
+	removeAt(index) {
+		if (index < 0 || index >= this.size)
+			throw new Error(`${index} is out of range.`);
+		if (index === 0) return (this.head = this.head.nextNode);
+		let beforeIndex = this.at(index - 1);
+		let afterIndex = this.at(index).nextNode;
+		let deletedValue = JSON.stringify(this.at(index).value);
+		beforeIndex.nextNode = afterIndex;
+		return console.log(`${deletedValue} removed at index ${index}.`);
+	}
 }
 
 //Node class or factory with value property,
@@ -130,13 +149,12 @@ class Node {
 	}
 }
 
-const ll1 = new LinkedList('monkey');
+//Quick Tests to Demonstrate Linked Lists
 
-console.log(ll1);
+let ll1 = new LinkedList('bonobo');
 
-ll1.prepend('cat');
-ll1.append('dog');
-ll1.append('chicken');
-ll1.prepend('human');
-console.log(ll1);
-console.log(ll1.tail);
+ll1.append('chipmunk');
+ll1.prepend('aardvark');
+ll1.append('giraffe');
+ll1.insertAt('dog', 2);
+console.log(ll1.toString());
